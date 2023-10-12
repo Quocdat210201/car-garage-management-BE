@@ -1,0 +1,17 @@
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\bin\Debug\net7.0\Gara.Persistance.Ef.deps.json
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\bin\Debug\net7.0\Gara.Persistance.Ef.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\bin\Debug\net7.0\Gara.Persistance.Ef.pdb
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\bin\Debug\net7.0\Gara.Domain.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\bin\Debug\net7.0\Gara.Persistance.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\bin\Debug\net7.0\Gara.Persistance.pdb
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\bin\Debug\net7.0\Gara.Domain.pdb
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.csproj.AssemblyReference.cache
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.GeneratedMSBuildEditorConfig.editorconfig
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.AssemblyInfoInputs.cache
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.AssemblyInfo.cs
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.csproj.CoreCompileInputs.cache
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.csproj.CopyComplete
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\refint\Gara.Persistance.Ef.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\Gara.Persistance.Ef.pdb
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Persistance.Ef\obj\Debug\net7.0\ref\Gara.Persistance.Ef.dll

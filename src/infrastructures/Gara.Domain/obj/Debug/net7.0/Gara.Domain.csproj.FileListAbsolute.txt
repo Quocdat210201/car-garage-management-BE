@@ -1,0 +1,12 @@
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\bin\Debug\net7.0\Gara.Domain.deps.json
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\bin\Debug\net7.0\Gara.Domain.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\bin\Debug\net7.0\Gara.Domain.pdb
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\Gara.Domain.csproj.AssemblyReference.cache
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\Gara.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\Gara.Domain.AssemblyInfoInputs.cache
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\Gara.Domain.AssemblyInfo.cs
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\Gara.Domain.csproj.CoreCompileInputs.cache
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\Gara.Domain.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\refint\Gara.Domain.dll
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\Gara.Domain.pdb
+D:\Personal\Practice\Template\GaraManagement\src\infrastructures\Gara.Domain\obj\Debug\net7.0\ref\Gara.Domain.dll

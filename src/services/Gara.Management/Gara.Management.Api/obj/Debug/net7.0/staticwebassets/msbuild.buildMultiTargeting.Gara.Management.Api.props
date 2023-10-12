@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Gara.Management.Api.props" />
+</Project>

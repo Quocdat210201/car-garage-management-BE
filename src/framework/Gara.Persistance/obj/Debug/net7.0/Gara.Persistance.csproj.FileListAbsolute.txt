@@ -1,0 +1,15 @@
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\bin\Debug\net7.0\Gara.Persistance.deps.json
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\bin\Debug\net7.0\Gara.Persistance.dll
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\bin\Debug\net7.0\Gara.Persistance.pdb
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\bin\Debug\net7.0\Gara.Domain.dll
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\bin\Debug\net7.0\Gara.Domain.pdb
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.csproj.AssemblyReference.cache
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.GeneratedMSBuildEditorConfig.editorconfig
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.AssemblyInfoInputs.cache
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.AssemblyInfo.cs
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.csproj.CoreCompileInputs.cache
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.csproj.CopyComplete
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.dll
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\refint\Gara.Persistance.dll
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\Gara.Persistance.pdb
+D:\Personal\Practice\Template\GaraManagement\src\framework\Gara.Persistance\obj\Debug\net7.0\ref\Gara.Persistance.dll
