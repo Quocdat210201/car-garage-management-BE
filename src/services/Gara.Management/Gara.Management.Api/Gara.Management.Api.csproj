@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\Gara.Persistance\Gara.Persistance.csproj" />
+    <ProjectReference Include="..\..\..\infrastructures\Gara.Persistance.Ef\Gara.Persistance.Ef.csproj" />
     <ProjectReference Include="..\Gara.Management.Application\Gara.Management.Application.csproj" />
   </ItemGroup>
 

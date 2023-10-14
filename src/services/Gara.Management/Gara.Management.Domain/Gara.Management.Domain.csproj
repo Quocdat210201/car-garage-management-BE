@@ -13,14 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Commands\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Queries\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\Gara.Persistance\Gara.Persistance.csproj" />
     <ProjectReference Include="..\..\..\infrastructures\Gara.Domain\Gara.Domain.csproj" />
   </ItemGroup>
 

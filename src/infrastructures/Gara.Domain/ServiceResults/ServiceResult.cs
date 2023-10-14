@@ -1,14 +1,18 @@
 ﻿namespace Gara.Domain.ServiceResults
 {
-    public class ServiceResult
+    public class ServiceResult : BaseServiceResult
     {
-        public bool IsSuccess { get; set; }
-
-        public List<string> ErrorMessages { get; set; }
-
         public ServiceResult()
         {
             ErrorMessages = new List<string>();
+        }
+
+        public object Data { get; set; }
+
+        public void Success(object data)
+        {
+            IsSuccess = true;
+            Data = data;
         }
     }
 }

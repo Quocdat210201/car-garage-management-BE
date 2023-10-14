@@ -1,9 +1,12 @@
-﻿using Gara.Domain;
+﻿using AutoMapper;
+using Gara.Domain;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Gara.Persistance.Ef
 {
     public class EfRepository<TContext, TEntity> : IEfRepository<TContext, TEntity>
+        where TContext : DbContext
         where TEntity : EntityBaseWithId
     {
         private readonly TContext DbContext;
@@ -71,6 +74,75 @@ namespace Gara.Persistance.Ef
         public Task UpdateAsync(TEntity entity)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public class EfRepository<TContext, TEntity, TModel> : IEfRepository<TContext, TEntity, TModel>
+        where TContext : DbContext
+        where TEntity : EntityBaseWithId
+        where TModel : class
+    {
+        protected readonly TContext DbContext;
+        private readonly IMapper _mapper;
+        public EfRepository(TContext dbContext, IMapper mapper)
+        {
+            DbContext = dbContext;
+            _mapper = mapper;
+        }
+
+        public Task<TModel> AddAsync(TModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<TModel>> AddAsync(List<TModel> models)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> Count(Expression<Func<TEntity, bool>> whereCondition = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(TModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(List<TModel> models)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<TModel>> GetAsync(int page = 0, int numberItemsPerPage = 0)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<TModel>> GetAsync(IQueryable<TEntity> datasource, int page = 0, int numberItemsPerPage = 0)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TModel> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<TModel>> ListAsync(Expression<Func<TModel, bool>> whereCondition, int page = 0, int numberItemsPerPage = 0)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(TModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return DbContext.SaveChangesAsync();
         }
     }
 }
