@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.7.1" />
     <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -21,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\framework\Gara.Persistance\Gara.Persistance.csproj" />
     <ProjectReference Include="..\..\..\infrastructures\Gara.Domain\Gara.Domain.csproj" />
+    <ProjectReference Include="..\..\Gara.Identity\Gara.Identity.Domain\Gara.Identity.Domain.csproj" />
   </ItemGroup>
 
 </Project>

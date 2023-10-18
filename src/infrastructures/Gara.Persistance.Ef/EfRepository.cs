@@ -41,9 +41,19 @@ namespace Gara.Persistance.Ef
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TEntity>> GetAsync(int page = 0, int numberItemsPerPage = 0)
+        public async Task<IEnumerable<TEntity>> GetAsync(int page = 0, int numberItemsPerPage = 0)
         {
-            throw new NotImplementedException();
+            var result = DbContext.Set<TEntity>().AsQueryable();
+
+            if (page == 0)
+            {
+                return await result.ToListAsync();
+            }
+
+            return await result
+                .Skip((page - 1) * numberItemsPerPage)
+                .Take(numberItemsPerPage)
+                .ToListAsync();
         }
 
         public Task<TEntity> GetByIdAsync(Guid id)
