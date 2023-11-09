@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\framework\Gara.Persistance\Gara.Persistance.csproj" />
     <ProjectReference Include="..\..\..\infrastructures\Gara.Domain\Gara.Domain.csproj" />
+    <ProjectReference Include="..\..\..\infrastructures\QuotePlatform.Cache\Gara.Cache.csproj" />
     <ProjectReference Include="..\..\Gara.Identity\Gara.Identity.Domain\Gara.Identity.Domain.csproj" />
   </ItemGroup>
 

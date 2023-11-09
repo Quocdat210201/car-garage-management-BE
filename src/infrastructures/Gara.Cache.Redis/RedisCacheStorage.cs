@@ -24,7 +24,7 @@ namespace Gara.Cache.Redis
 
         public TValue Get(TKey key)
         {
-            var keyBuilder = $"QuotePlatform_{key}";
+            var keyBuilder = $"Gara_{key}";
             if (string.IsNullOrEmpty(keyBuilder))
             {
                 return default;
@@ -36,12 +36,12 @@ namespace Gara.Cache.Redis
 
         public void Remove(TKey key)
         {
-            RedisDatabase.GetDatabase().KeyDelete($"QuotePlatform_{key}");
+            RedisDatabase.GetDatabase().KeyDelete($"Gara_{key}");
         }
 
         public void Set(TKey key, TValue value)
         {
-            var keyBuilder = $"QuotePlatform_{key}";
+            var keyBuilder = $"Gara_{key}";
             if (string.IsNullOrEmpty(keyBuilder))
             {
                 return;

@@ -9,6 +9,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Gara.Management.Application.Services.DataInitialize;
 using Microsoft.EntityFrameworkCore;
+using Gara.Cache.Redis.Extensions;
+using Gara.Management.Application.Storages;
+using Gara.Management.Domain.Storages;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,8 @@ var assembly = Assembly.Load("Gara.Management.Domain");
 builder.Services.AddDbContext(configuration);
 builder.Services.AddCors();
 builder.Services.AddControllers();
+builder.Services.AddRedisCache(configuration);
+builder.Services.AddScoped<IGaraStorage, GaraStorage>();
 
 builder.Services.AddIdentity<GaraApplicationUser, GaraApplicationRole>(o =>
 {
@@ -129,7 +134,7 @@ db.Database.MigrateAsync().Wait();
 var dataInitializeServices = serviceProvider.GetServices<IDataInitializeService>();
 foreach (var service in dataInitializeServices)
 {
-    service.RunAsync();
+    //service.RunAsync();
 }
 
 app.Run();
