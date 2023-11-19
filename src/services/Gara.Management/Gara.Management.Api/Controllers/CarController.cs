@@ -20,8 +20,6 @@ namespace Gara.Management.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCars(CancellationToken cancellationToken)
         {
-            var test = _garaStorage.Get("Honda");
-
             var cars = await Mediator.Send(new CarListQuery(), cancellationToken);
 
             return Ok(cars);

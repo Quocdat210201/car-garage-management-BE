@@ -13,5 +13,13 @@ namespace Gara.Management.Domain.Entities
         public Guid CarTypeId { get; set; }
 
         public CarType CarType { get; set; }
+
+        public Guid OwnerId { get; set; }
+
+        public GaraApplicationUser Owner { get; set; }
+
+        public List<Bill> Bills { get; set; }
+
+        public List<AppointmentSchedule> Appointments { get; set; }
     }
 }
