@@ -20,6 +20,6 @@ namespace Gara.Management.Domain.Entities
 
         public List<Bill> Bills { get; set; }
 
-        public List<AppointmentSchedule> Appointments { get; set; }
+        public List<AppointmentSchedule> AppointmentSchedules { get; set; }
     }
 }
