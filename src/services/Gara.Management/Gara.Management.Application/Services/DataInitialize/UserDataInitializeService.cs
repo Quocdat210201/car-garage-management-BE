@@ -1,4 +1,5 @@
-﻿using Gara.Management.Domain.Entities;
+﻿using Gara.Management.Application.Constants;
+using Gara.Management.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Gara.Management.Application.Services.DataInitialize
@@ -92,49 +93,49 @@ namespace Gara.Management.Application.Services.DataInitialize
                         }
                     };
 
-            //foreach (var user in systemAdminAccounts)
-            //{
-            //    if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
+            foreach (var user in systemAdminAccounts)
+            {
+                if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
 
-            //    var result = await _userManager.CreateAsync(user, password);
-            //    if (result.Succeeded)
-            //    {
-            //        await _userManager.AddToRoleAsync(user, RoleConstants.SYSTEM_ADMIN);
-            //    }
-            //}
+                var result = await _userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, RoleConstants.SYSTEM_ADMIN);
+                }
+            }
 
-            //foreach (var user in garaAdminAccounts)
-            //{
-            //    if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
+            foreach (var user in garaAdminAccounts)
+            {
+                if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
 
-            //    var result = await _userManager.CreateAsync(user, password);
-            //    if (result.Succeeded)
-            //    {
-            //        await _userManager.AddToRoleAsync(user, RoleConstants.GARA_ADMIN);
-            //    }
-            //}
+                var result = await _userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, RoleConstants.GARA_ADMIN);
+                }
+            }
 
-            //foreach (var user in staffAccounts)
-            //{
-            //    if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
+            foreach (var user in staffAccounts)
+            {
+                if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
 
-            //    var result = await _userManager.CreateAsync(user, password);
-            //    if (result.Succeeded)
-            //    {
-            //        await _userManager.AddToRoleAsync(user, RoleConstants.STAFF);
-            //    }
-            //}
+                var result = await _userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, RoleConstants.STAFF);
+                }
+            }
 
-            //foreach (var user in customerAccounts)
-            //{
-            //    if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
+            foreach (var user in customerAccounts)
+            {
+                if (_userManager.FindByNameAsync(user.UserName).Result != null) continue;
 
-            //    var result = await _userManager.CreateAsync(user, password);
-            //    if (result.Succeeded)
-            //    {
-            //        await _userManager.AddToRoleAsync(user, RoleConstants.CUSTOMER);
-            //    }
-            //}
+                var result = await _userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, RoleConstants.CUSTOMER);
+                }
+            }
         }
     }
 }
