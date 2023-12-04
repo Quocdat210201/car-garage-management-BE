@@ -1,6 +1,7 @@
 ﻿using Gara.Domain.ServiceResults;
 using Gara.Identity.Domain.MediatR;
 using Gara.Management.Api.Controllers;
+using Gara.Management.Domain.Commands.Accounts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,13 @@ namespace KidsWell.Api.Controllers.Common
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ServiceResult> Login([FromBody] UserLoginQuery request, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(request, cancellationToken);
+            return result;
+        }
+
+        [HttpPost("registration-account")]
+        public async Task<ServiceResult> RegisterAccount([FromBody] RegisterAccountCommand request, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(request, cancellationToken);
             return result;

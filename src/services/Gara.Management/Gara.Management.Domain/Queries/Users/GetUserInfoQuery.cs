@@ -29,9 +29,9 @@ namespace Gara.Management.Domain.Queries.Users
             ServiceResult result = new();
 
             var userId = _contextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userRes = _userManager.FindByIdAsync(userId).Result;
+            var currentUser = _userManager.FindByIdAsync(userId).Result;
 
-            if (userRes == null)
+            if (currentUser == null)
             {
                 result.IsSuccess = false;
                 return result;
@@ -39,12 +39,12 @@ namespace Gara.Management.Domain.Queries.Users
 
             var userInfo = new UserInfoResponseModel
             {
-                Id = userRes.Id,
-                Name = userRes.Name,
-                Email = userRes.Email,
-                PhoneNumber = userRes.PhoneNumber,
-                DateOfBirth = userRes.DateOfBirth,
-                Address = userRes.Address
+                Id = currentUser.Id,
+                Name = currentUser.Name,
+                Email = currentUser.Email,
+                PhoneNumber = currentUser.PhoneNumber,
+                DateOfBirth = currentUser.DateOfBirth,
+                Address = currentUser.Address
             };
 
             result.Success(userInfo);
