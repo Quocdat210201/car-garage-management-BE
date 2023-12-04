@@ -4,31 +4,27 @@ using Gara.Management.Domain.Model;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 
 namespace Gara.Management.Domain.Queries.Users
 {
-    public class GetUserRequest : IRequest<ServiceResult>
+    public class GetUserInfoQuery : IRequest<ServiceResult>
     {
     }
 
-    public class GetUserRequestHandler : IRequestHandler<GetUserRequest, ServiceResult>
+    public class GetUserRequestHandler : IRequestHandler<GetUserInfoQuery, ServiceResult>
     {
         private readonly UserManager<GaraApplicationUser> _userManager;
-        private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _contextAccessor;
 
         public GetUserRequestHandler(UserManager<GaraApplicationUser> userManager,
-            IConfiguration configuration,
             IHttpContextAccessor contextAccessor)
         {
             _userManager = userManager;
-            _configuration = configuration;
             _contextAccessor = contextAccessor ?? throw new ArgumentNullException(nameof(contextAccessor));
         }
 
-        public async Task<ServiceResult> Handle(GetUserRequest request, CancellationToken cancellationToken)
+        public async Task<ServiceResult> Handle(GetUserInfoQuery request, CancellationToken cancellationToken)
         {
             ServiceResult result = new();
 
@@ -48,6 +44,7 @@ namespace Gara.Management.Domain.Queries.Users
                 Email = userRes.Email,
                 PhoneNumber = userRes.PhoneNumber,
                 DateOfBirth = userRes.DateOfBirth,
+                Address = userRes.Address
             };
 
             result.Success(userInfo);

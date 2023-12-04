@@ -1,4 +1,5 @@
 ﻿using Gara.Domain.ServiceResults;
+using Gara.Management.Domain.Commands.Users;
 using Gara.Management.Domain.Queries.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +13,16 @@ namespace Gara.Management.Api.Controllers
         [HttpGet]
         public async Task<ServiceResult> GetUser(CancellationToken cancellationToken)
         {
-            var result = await Mediator.Send(new GetUserRequest(), cancellationToken);
+            var result = await Mediator.Send(new GetUserInfoQuery(), cancellationToken);
             return result;
         }
 
-        //[HttpPost("update-user")]
-        //public async Task<ServiceResult> UpdateUser([FromBody] UpdateUserRequest request, CancellationToken cancellationToken)
-        //{
-        //    var result = await Mediator.Send(request, cancellationToken);
-        //    return result;
-        //}
+        [HttpPut("update-user")]
+        public async Task<ServiceResult> UpdateUser([FromBody] UpdateUserInfoCommand request, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(request, cancellationToken);
+            return result;
+        }
 
         //[HttpPost("change-password")]
         //public async Task<ServiceResult> ChangePassword([FromBody] ChangePasswordRequest request, CancellationToken cancellationToken)

@@ -9,5 +9,7 @@ namespace Gara.Identity.Domain.Entities
         public string? Avatar { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
+
+        public string? Address { get; set; }
     }
 }

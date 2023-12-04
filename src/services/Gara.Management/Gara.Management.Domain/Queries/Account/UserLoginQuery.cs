@@ -10,14 +10,14 @@ using System.Security.Claims;
 
 namespace Gara.Identity.Domain.MediatR
 {
-    public class UserLoginRequest : IRequest<ServiceResult>
+    public class UserLoginQuery : IRequest<ServiceResult>
     {
         public string PhoneNumber { get; set; }
 
         public string Password { get; set; }
     }
 
-    public class UserLoginHandler : IRequestHandler<UserLoginRequest, ServiceResult>
+    public class UserLoginHandler : IRequestHandler<UserLoginQuery, ServiceResult>
     {
 
         private readonly UserManager<GaraApplicationUser> _userManager;
@@ -33,7 +33,7 @@ namespace Gara.Identity.Domain.MediatR
             _configuration = configuration;
         }
 
-        public async Task<ServiceResult> Handle(UserLoginRequest request, CancellationToken cancellationToken)
+        public async Task<ServiceResult> Handle(UserLoginQuery request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByNameAsync(request.PhoneNumber);
 

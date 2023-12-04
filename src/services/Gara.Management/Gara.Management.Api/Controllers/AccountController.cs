@@ -13,7 +13,7 @@ namespace KidsWell.Api.Controllers.Common
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ServiceResult> Login([FromBody] UserLoginRequest request, CancellationToken cancellationToken)
+        public async Task<ServiceResult> Login([FromBody] UserLoginQuery request, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(request, cancellationToken);
             return result;
