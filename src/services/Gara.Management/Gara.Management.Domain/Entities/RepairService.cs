@@ -6,13 +6,13 @@ namespace Gara.Management.Domain.Entities
     {
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public string Detail { get; set; }
+        public string? Detail { get; set; }
 
         public double Price { get; set; }
 
-        public string Note { get; set; }
+        public string? Note { get; set; }
 
         public List<AutomotivePart> Parts { get; set; }
     }

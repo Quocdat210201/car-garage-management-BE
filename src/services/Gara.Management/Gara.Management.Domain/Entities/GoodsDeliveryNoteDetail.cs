@@ -4,11 +4,11 @@ namespace Gara.Management.Domain.Entities
 {
     public class GoodsDeliveryNoteDetail : EntityBaseWithId
     {
-        public int ReceiveNumber { get; set; }
+        public int? ReceiveNumber { get; set; }
 
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
-        public double Discount { get; set; }
+        public double? Discount { get; set; }
 
         public Guid AutomotivePartId { get; set; }
 

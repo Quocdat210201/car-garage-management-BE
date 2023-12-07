@@ -12,7 +12,7 @@ namespace Gara.Management.Domain.Entities
 
         public int PaymentStatus { get; set; }
 
-        public string Note { get; set; }
+        public string? Note { get; set; }
 
         public List<BillDetail> Details { get; set; }
 

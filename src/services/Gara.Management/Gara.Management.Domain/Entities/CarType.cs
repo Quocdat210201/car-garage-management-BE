@@ -6,7 +6,7 @@ namespace Gara.Management.Domain.Entities
     {
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public List<Car> Cars { get; set; }
 

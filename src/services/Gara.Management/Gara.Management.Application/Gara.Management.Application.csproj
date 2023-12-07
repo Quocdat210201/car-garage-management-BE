@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\infrastructures\Gara.Cache.Redis\Gara.Cache.Redis.csproj" />
     <ProjectReference Include="..\Gara.Management.Domain\Gara.Management.Domain.csproj" />
   </ItemGroup>

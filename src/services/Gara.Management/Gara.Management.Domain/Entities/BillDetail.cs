@@ -4,7 +4,7 @@ namespace Gara.Management.Domain.Entities
 {
     public class BillDetail : EntityBaseWithId
     {
-        public string Note { get; set; }
+        public string? Note { get; set; }
 
         public RepairService RepairService { get; set; }
 

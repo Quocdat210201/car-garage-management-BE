@@ -4,9 +4,9 @@ namespace Gara.Management.Domain.Entities
 {
     public class Car : EntityBaseWithId
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public string RegistrationNumber { get; set; }
 
@@ -20,6 +20,6 @@ namespace Gara.Management.Domain.Entities
 
         public List<Bill> Bills { get; set; }
 
-        public List<AppointmentSchedule> AppointmentSchedules { get; set; }
+        public List<AppointmentSchedule>? AppointmentSchedules { get; set; }
     }
 }

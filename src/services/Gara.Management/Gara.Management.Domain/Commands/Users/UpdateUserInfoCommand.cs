@@ -15,11 +15,14 @@ namespace Gara.Management.Domain.Commands.Users
         public string Name { get; set; }
 
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         public string? Address { get; set; }
 
         [Required]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
+        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Phone Number.")]
         public string PhoneNumber { get; set; }
 
         public DateTime? DateOfBirth { get; set; }

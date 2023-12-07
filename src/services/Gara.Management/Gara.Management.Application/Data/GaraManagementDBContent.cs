@@ -35,6 +35,10 @@ namespace Gara.Management.Application.Data
 
         public virtual DbSet<CarType> CarTypes { get; set; }
 
+        public virtual DbSet<District> Districts { get; set; }
+
+        public virtual DbSet<Ward> Wards { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
