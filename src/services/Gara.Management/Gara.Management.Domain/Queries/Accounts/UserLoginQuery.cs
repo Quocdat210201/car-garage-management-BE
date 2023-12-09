@@ -79,6 +79,7 @@ namespace Gara.Identity.Domain.MediatR
                 return new ServiceResult
                 {
                     StatusCode = HttpStatusCode.OK,
+                    IsSuccess = true,
                     Data = new
                     {
                         access_token = JwtHelper.GenerateJwtToken(claims, _configuration),

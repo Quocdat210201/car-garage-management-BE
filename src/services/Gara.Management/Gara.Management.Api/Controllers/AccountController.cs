@@ -9,10 +9,9 @@ namespace KidsWell.Api.Controllers.Common
 {
     [Route("api/account")]
     [Consumes("application/json")]
+    [AllowAnonymous]
     public class AccountController : BaseApiController
     {
-
-        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ServiceResult> Login([FromBody] UserLoginQuery request, CancellationToken cancellationToken)
         {
@@ -20,7 +19,7 @@ namespace KidsWell.Api.Controllers.Common
             return result;
         }
 
-        [HttpPost("registration-account")]
+        [HttpPost("sign-up")]
         public async Task<ServiceResult> RegisterAccount([FromBody] RegisterAccountCommand request, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(request, cancellationToken);

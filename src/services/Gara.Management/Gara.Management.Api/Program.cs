@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Gara.Cache.Redis.Extensions;
 using Gara.Management.Application.Storages;
 using Gara.Management.Domain.Storages;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,15 @@ var assembly = Assembly.Load("Gara.Management.Domain");
 
 builder.Services.AddDbContext(configuration);
 builder.Services.AddCors();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
+        options.SerializerSettings.NullValueHandling = NullValueHandling.Include;
+    });
+
 builder.Services.AddRedisCache(configuration);
 builder.Services.AddScoped<IGaraStorage, GaraStorage>();
 

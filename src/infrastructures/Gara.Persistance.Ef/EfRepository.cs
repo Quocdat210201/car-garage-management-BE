@@ -16,29 +16,45 @@ namespace Gara.Persistance.Ef
             DbContext = dbContent;
         }
 
-        public Task<TEntity> AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            if (entity is IAuditable)
+            {
+                ((IAuditable)entity).CreatedDate = DateTime.UtcNow;
+                ((IAuditable)entity).UpdatedDate = DateTime.UtcNow;
+            }
+            await DbContext.Set<TEntity>().AddAsync(entity);
+            return entity;
         }
 
-        public Task<IEnumerable<TEntity>> AddAsync(List<TEntity> entities)
+        public async Task<IEnumerable<TEntity>> AddAsync(List<TEntity> entities)
         {
-            throw new NotImplementedException();
+            await DbContext.Set<TEntity>().AddRangeAsync(entities);
+            return entities;
         }
 
         public Task<int> Count(Expression<Func<TEntity, bool>> whereCondition = null)
         {
-            throw new NotImplementedException();
+            if (whereCondition == null)
+            {
+                return DbContext.Set<TEntity>().CountAsync();
+            }
+            else
+            {
+                return DbContext.Set<TEntity>().CountAsync(whereCondition);
+            }
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            await Task.Yield();
+            DbContext.Set<TEntity>().Remove(entity);
         }
 
-        public Task DeleteAsync(List<TEntity> entities)
+        public async Task DeleteAsync(List<TEntity> entities)
         {
-            throw new NotImplementedException();
+            await Task.Yield();
+            DbContext.Set<TEntity>().RemoveRange(entities);
         }
 
         public async Task<IEnumerable<TEntity>> GetAsync(int page = 0, int numberItemsPerPage = 0)
@@ -58,32 +74,66 @@ namespace Gara.Persistance.Ef
 
         public Task<TEntity> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return DbContext.Set<TEntity>().FindAsync(id).AsTask();
         }
 
-        public Task<IEnumerable<TEntity>> GetWithIncludeAsync(Expression<Func<TEntity, bool>> whereCondition, int page = 0, int numberItemsPerPage = 0, params Expression<Func<TEntity, object>>[] includes)
+        public async Task<IEnumerable<TEntity>> GetWithIncludeAsync(Expression<Func<TEntity, bool>> whereCondition, int page = 0, int numberItemsPerPage = 0, params Expression<Func<TEntity, object>>[] includes)
         {
-            throw new NotImplementedException();
+            var result = DbContext.Set<TEntity>().AsNoTracking().AsQueryable();
+            foreach (Expression<Func<TEntity, object>> include in includes)
+            {
+                result = result.Include(include);
+            }
+
+            if (whereCondition != null)
+            {
+                result = result.Where(whereCondition);
+            }
+
+            if (page == 0 && numberItemsPerPage == 0)
+            {
+                return await result.AsNoTracking().ToListAsync();
+            }
+
+            return await result
+                .Skip((page - 1) * numberItemsPerPage)
+                .Take(numberItemsPerPage)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> whereCondition, int page = 0, int numberItemsPerPage = 0)
+        public async Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> whereCondition, int page = 0, int numberItemsPerPage = 0)
         {
-            throw new NotImplementedException();
+            var result = DbContext.Set<TEntity>().AsNoTracking().AsQueryable().Where(whereCondition);
+            if (page == 0 && numberItemsPerPage == 0)
+            {
+                return await result.ToListAsync();
+            }
+
+            return await result
+                .Skip((page - 1) * numberItemsPerPage)
+                .Take(numberItemsPerPage)
+                .ToListAsync();
         }
 
         public IQueryable<TEntity> Query()
         {
-            throw new NotImplementedException();
+            return DbContext.Set<TEntity>().AsNoTracking().AsQueryable();
         }
 
         public Task<int> SaveChangeAsync()
         {
-            throw new NotImplementedException();
+            return DbContext.SaveChangesAsync();
         }
 
         public Task UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            DbContext.Entry(entity).State = EntityState.Modified;
+            if (entity is IAuditable)
+            {
+                ((IAuditable)entity).UpdatedDate = DateTime.UtcNow;
+            }
+            return DbContext.SaveChangesAsync();
         }
     }
 

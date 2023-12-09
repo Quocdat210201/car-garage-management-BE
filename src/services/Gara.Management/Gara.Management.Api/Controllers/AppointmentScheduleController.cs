@@ -1,10 +1,12 @@
 ﻿using Gara.Management.Domain.Commands.AppointmentSchedules;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gara.Management.Api.Controllers
 {
     [Route("api/appointment-schedule")]
     [Consumes("application/json")]
+    [AllowAnonymous]
     public class AppointmentScheduleController : BaseApiController
     {
         //[HttpGet]
