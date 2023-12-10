@@ -8,13 +8,11 @@ namespace Gara.Management.Api.Controllers
     public class CarController : BaseApiController
     {
         private readonly ILogger<CarController> _logger;
-        private readonly IGaraStorage _garaStorage;
 
         public CarController(ILogger<CarController> logger,
             IGaraStorage garaStorage)
         {
             _logger = logger;
-            _garaStorage = garaStorage;
         }
 
         [HttpGet]
