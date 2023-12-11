@@ -14,7 +14,6 @@ namespace Gara.Management.Domain.Commands.Users
         [Required]
         public string Name { get; set; }
 
-        [EmailAddress]
         public string Email { get; set; }
 
         public string? Address { get; set; }

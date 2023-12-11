@@ -92,7 +92,6 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Phone Number.")]
         public string PhoneNumber { get; set; }
 
-        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
