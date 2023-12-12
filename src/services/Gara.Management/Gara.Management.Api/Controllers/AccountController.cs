@@ -1,11 +1,10 @@
 ﻿using Gara.Domain.ServiceResults;
 using Gara.Identity.Domain.MediatR;
-using Gara.Management.Api.Controllers;
 using Gara.Management.Domain.Commands.Accounts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KidsWell.Api.Controllers.Common
+namespace Gara.Management.Api.Controllers
 {
     [Route("api/account")]
     [Consumes("application/json")]
