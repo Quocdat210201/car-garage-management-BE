@@ -39,7 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Management.Api.Test", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Exceptions", "src\infrastructures\Gara.Exceptions\Gara.Exceptions.csproj", "{58C93EFB-0B34-41D6-BB96-4E9F80936F3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gara.Extensions", "Gara.Extensions\Gara.Extensions.csproj", "{14F6955A-0C63-46CE-A52C-BD50063386B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Extensions", "Gara.Extensions\Gara.Extensions.csproj", "{14F6955A-0C63-46CE-A52C-BD50063386B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gara.Aws.Storage", "Gara.Aws.Storage", "{101269D7-AA01-4229-AB5A-0832ED6C8A4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gara.Aws.Storage", "src\services\Gara.Aws.Storage\Gara.Aws.Storage\Gara.Aws.Storage.csproj", "{A84539C4-6D35-4173-B290-10CB7FE24072}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +99,10 @@ Global
 		{14F6955A-0C63-46CE-A52C-BD50063386B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14F6955A-0C63-46CE-A52C-BD50063386B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14F6955A-0C63-46CE-A52C-BD50063386B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84539C4-6D35-4173-B290-10CB7FE24072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84539C4-6D35-4173-B290-10CB7FE24072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84539C4-6D35-4173-B290-10CB7FE24072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84539C4-6D35-4173-B290-10CB7FE24072}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +125,8 @@ Global
 		{89BCA064-3739-4493-88FB-A901503DF1D2} = {320970DC-DF34-4518-AB41-5595566988D2}
 		{58C93EFB-0B34-41D6-BB96-4E9F80936F3F} = {21D5FA9A-759A-42BB-9C00-7987B4C40BE7}
 		{14F6955A-0C63-46CE-A52C-BD50063386B8} = {BEE011F2-AF1B-4BF1-BA9A-2E0C5FF9CAAC}
+		{101269D7-AA01-4229-AB5A-0832ED6C8A4E} = {70F25C4E-1281-47E1-AF5D-E724AFA3B7CE}
+		{A84539C4-6D35-4173-B290-10CB7FE24072} = {101269D7-AA01-4229-AB5A-0832ED6C8A4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C0E0639-6609-4397-9BBB-7E1CBEF22A44}
