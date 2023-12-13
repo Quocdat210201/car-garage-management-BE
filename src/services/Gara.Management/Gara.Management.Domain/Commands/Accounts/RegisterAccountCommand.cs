@@ -31,6 +31,8 @@ namespace Gara.Management.Domain.Commands.Accounts
         public DateTime? DateOfBirth { get; set; }
 
         public Guid? WardId { get; set; }
+
+        public string Role { get; set; }
     }
 
     public class RegisterAccountHandler : IRequestHandler<RegisterAccountCommand, ServiceResult>
@@ -61,7 +63,7 @@ namespace Gara.Management.Domain.Commands.Accounts
             {
                 Id = Guid.NewGuid(),
                 UserName = request.PhoneNumber,
-                Email = request.Email,
+                Email = string.IsNullOrEmpty(request.Email) ? null : request.Email,
                 PhoneNumber = request.PhoneNumber,
                 Name = request.Name,
                 Address = request.Address,
@@ -70,7 +72,7 @@ namespace Gara.Management.Domain.Commands.Accounts
 
             await _userManager.CreateAsync(user, request.Password);
 
-            await _userManager.AddToRoleAsync(user, "Staff");
+            await _userManager.AddToRoleAsync(user, request.Role);
 
             result.Success(user);
 
