@@ -1,6 +1,7 @@
 ﻿using Gara.Domain.ServiceResults;
 using Gara.Extensions;
 using Gara.Management.Domain.Entities;
+using Gara.Management.Domain.Enums;
 using Gara.Management.Domain.Repositories;
 using Gara.Persistance.Abstractions;
 using MediatR;
@@ -72,7 +73,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                 AppointmentDate = request.AppointmentScheduleDate,
                 Content = request.Note,
                 Status = 0,
-                ReceiveCarAt = 1,
+                ReceiveCarAt = request.ReceiveCarAt,
                 ReceiveCarAddress = request.Address,
                 CarId = car.Id
             };
@@ -117,5 +118,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
         public string? ManufacturingYear { get; set; }
 
         public List<Guid> RepairServiceIds { get; set; }
+
+        public ReceiveCarAtEnum ReceiveCarAt { get; set; }
     }
 }

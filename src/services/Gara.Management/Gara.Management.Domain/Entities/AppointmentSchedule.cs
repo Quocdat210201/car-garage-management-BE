@@ -1,4 +1,5 @@
 ﻿using Gara.Domain;
+using Gara.Management.Domain.Enums;
 
 namespace Gara.Management.Domain.Entities
 {
@@ -10,7 +11,7 @@ namespace Gara.Management.Domain.Entities
 
         public int Status { get; set; }
 
-        public int? ReceiveCarAt { get; set; }
+        public ReceiveCarAtEnum? ReceiveCarAt { get; set; }
 
         public string? ReceiveCarAddress { get; set; }
 
