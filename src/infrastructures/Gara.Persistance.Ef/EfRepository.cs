@@ -57,9 +57,14 @@ namespace Gara.Persistance.Ef
             DbContext.Set<TEntity>().RemoveRange(entities);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAsync(int page = 0, int numberItemsPerPage = 0)
+        public async Task<IEnumerable<TEntity>> GetAsync(IEnumerable<string> includes = null, int page = 0, int numberItemsPerPage = 0)
         {
             var result = DbContext.Set<TEntity>().AsQueryable();
+
+            if (includes != null)
+            {
+                result = includes.Aggregate(result, (current, include) => current.Include(include));
+            }
 
             if (page == 0)
             {

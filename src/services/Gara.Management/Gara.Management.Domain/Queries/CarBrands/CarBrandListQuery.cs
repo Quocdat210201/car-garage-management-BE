@@ -20,7 +20,7 @@ namespace Gara.Management.Domain.Queries.Cars
 
         public async Task<ServiceResult> Handle(CarBrandListQuery request, CancellationToken cancellationToken)
         {
-            var carList = await _repository.GetAsync();
+            var carList = await _repository.GetAsync(new List<string> { "CarTypes" });
 
             ServiceResult result = new();
 
