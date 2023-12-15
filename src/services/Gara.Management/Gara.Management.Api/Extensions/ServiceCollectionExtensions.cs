@@ -24,6 +24,8 @@ namespace Gara.Management.Api.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IRepository<Car>, EfRepository<GaraManagementDBContent, Car>>();
+            services.AddScoped<IRepository<CarBrand>, EfRepository<GaraManagementDBContent, CarBrand>>();
+            services.AddScoped<IRepository<CarType>, EfRepository<GaraManagementDBContent, CarType>>();
             services.AddScoped<IRepository<AppointmentSchedule>, EfRepository<GaraManagementDBContent, AppointmentSchedule>>();
             services.AddScoped<IRepository<RepairService>, EfRepository<GaraManagementDBContent, RepairService>>();
 
