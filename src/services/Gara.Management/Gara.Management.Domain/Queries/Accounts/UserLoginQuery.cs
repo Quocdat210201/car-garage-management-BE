@@ -4,6 +4,7 @@ using Gara.Management.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
@@ -12,8 +13,12 @@ namespace Gara.Identity.Domain.MediatR
 {
     public class UserLoginQuery : IRequest<ServiceResult>
     {
+        [Required]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        [MinLength(6)]
         public string Password { get; set; }
     }
 

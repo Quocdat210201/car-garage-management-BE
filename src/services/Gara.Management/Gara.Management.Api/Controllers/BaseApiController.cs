@@ -7,7 +7,7 @@ namespace Gara.Management.Api.Controllers
 {
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
-    public class BaseApiController : Controller
+    public class BaseApiController : ControllerBase
     {
         protected IMediator Mediator => HttpContext.RequestServices.GetRequiredService<IMediator>();
         protected IMapper Mapper => HttpContext.RequestServices.GetRequiredService<IMapper>();
