@@ -26,8 +26,12 @@ namespace Gara.Management.Api.Extensions
             services.AddScoped<IRepository<Car>, EfRepository<GaraManagementDBContent, Car>>();
             services.AddScoped<IRepository<CarBrand>, EfRepository<GaraManagementDBContent, CarBrand>>();
             services.AddScoped<IRepository<CarType>, EfRepository<GaraManagementDBContent, CarType>>();
+
             services.AddScoped<IRepository<AppointmentSchedule>, EfRepository<GaraManagementDBContent, AppointmentSchedule>>();
             services.AddScoped<IRepository<RepairService>, EfRepository<GaraManagementDBContent, RepairService>>();
+
+            services.AddScoped<IRepository<Ward>, EfRepository<GaraManagementDBContent, Ward>>();
+            services.AddScoped<IRepository<District>, EfRepository<GaraManagementDBContent, District>>();
 
             services.AddScoped<ICarRepository, CarRepository>();
             return services;
