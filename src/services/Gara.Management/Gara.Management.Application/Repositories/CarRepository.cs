@@ -8,6 +8,7 @@ namespace Gara.Management.Application.Repositories
     public class CarRepository : ICarRepository
     {
         private readonly GaraManagementDBContent _garaManagementDBContent;
+
         public CarRepository(GaraManagementDBContent garaManagementDBContent)
         {
             _garaManagementDBContent = garaManagementDBContent;
@@ -22,6 +23,11 @@ namespace Gara.Management.Application.Repositories
             }
 
             return car;
+        }
+
+        public Task<Car> FindCarByUserIdAsync(Guid userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

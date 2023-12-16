@@ -5,5 +5,7 @@ namespace Gara.Management.Domain.Repositories
     public interface ICarRepository
     {
         public Task<Car> FindCarByRegistrationNumberAsync(string registrationNumber);
+
+        public Task<Car> FindCarByUserIdAsync(Guid userId);
     }
 }

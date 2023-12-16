@@ -2,6 +2,9 @@
 using Gara.Management.Application.Repositories;
 using Gara.Management.Domain.Entities;
 using Gara.Management.Domain.Repositories;
+using Gara.Management.Domain.Services;
+using Gara.Management.Domain.Services.AppointmentSchedules;
+using Gara.Management.Domain.Services.Factory;
 using Gara.Persistance.Abstractions;
 using Gara.Persistance.Ef;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +26,12 @@ namespace Gara.Management.Api.Extensions
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            // services
+            services.AddScoped<IAppointmentScheduleFactory, AppointmentScheduleFactory>();
+            services.AddScoped<AdminAppointmentScheduleService, AdminAppointmentScheduleService>();
+            services.AddScoped<CustomerAppointmentScheduleService, CustomerAppointmentScheduleService>();
+
+            // repositories
             services.AddScoped<IRepository<Car>, EfRepository<GaraManagementDBContent, Car>>();
             services.AddScoped<IRepository<CarBrand>, EfRepository<GaraManagementDBContent, CarBrand>>();
             services.AddScoped<IRepository<CarType>, EfRepository<GaraManagementDBContent, CarType>>();
@@ -34,6 +43,7 @@ namespace Gara.Management.Api.Extensions
             services.AddScoped<IRepository<District>, EfRepository<GaraManagementDBContent, District>>();
 
             services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<IAppointmentScheduleRepository, AppointmentScheduleRepository>();
             return services;
         }
     }
