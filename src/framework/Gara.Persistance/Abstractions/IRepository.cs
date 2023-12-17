@@ -12,7 +12,7 @@ namespace Gara.Persistance.Abstractions
 
         Task<TEntity> GetByIdAsync(Guid id);
 
-        Task<IEnumerable<TEntity>> GetAsync(IEnumerable<string> includes = null, int page = 0, int numberItemsPerPage = 0);
+        Task<IEnumerable<TEntity>> GetAsync(int page = 0, int numberItemsPerPage = 0);
 
         Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> whereCondition, int page = 0, int numberItemsPerPage = 0);
 
