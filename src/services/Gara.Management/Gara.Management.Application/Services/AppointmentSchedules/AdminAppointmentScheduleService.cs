@@ -14,7 +14,7 @@ namespace Gara.Management.Domain.Services.AppointmentSchedules
 
         public async Task<IEnumerable<AppointmentSchedule>> GetAppointmentSchedules(Guid userId)
         {
-            var appointmentScheduleList = await _repository.GetAsync();
+            var appointmentScheduleList = await _repository.GetWithIncludeAsync(null, 0, 0, aps => aps.Car, aps => aps.Car.Owner);
 
             return appointmentScheduleList;
         }
