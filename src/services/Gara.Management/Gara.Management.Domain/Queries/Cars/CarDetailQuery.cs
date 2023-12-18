@@ -34,13 +34,24 @@ namespace Gara.Management.Domain.Queries.Cars
             var currentUserRole = _contextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.Role);
             var currentUserId = _contextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var car = await _repository.GetWithIncludeAsync(
-                c => c.OwnerId == new Guid(currentUserId) && c.Id == request.Id, 0, 0,
-                c => c.Owner, c => c.AppointmentSchedules);
-
             ServiceResult result = new();
 
-            result.Success(car);
+            if (currentUserRole == "Gara Administrator" || currentUserRole == "Staff")
+            {
+                var car = await _repository.GetWithIncludeAsync(
+                    c => c.Id == request.Id, 0, 0,
+                    c => c.Owner, c => c.AppointmentSchedules);
+
+                result.Success(car);
+            }
+            else
+            {
+                var car = await _repository.GetWithIncludeAsync(
+                    c => c.OwnerId == new Guid(currentUserId) && c.Id == request.Id, 0, 0,
+                    c => c.Owner, c => c.AppointmentSchedules);
+
+                result.Success(car);
+            }
 
             return result;
         }
