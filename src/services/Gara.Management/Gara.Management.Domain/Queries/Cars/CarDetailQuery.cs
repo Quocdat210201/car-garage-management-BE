@@ -34,13 +34,13 @@ namespace Gara.Management.Domain.Queries.Cars
             var currentUserRole = _contextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.Role);
             var currentUserId = _contextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var carList = (List<Car>)await _repository.GetWithIncludeAsync(
-                car => car.OwnerId == new Guid(currentUserId) && car.Id == request.Id, 0, 0,
-                car => car.Owner, car => car.AppointmentSchedules);
+            var car = await _repository.GetWithIncludeAsync(
+                c => c.OwnerId == new Guid(currentUserId) && c.Id == request.Id, 0, 0,
+                c => c.Owner, c => c.AppointmentSchedules);
 
             ServiceResult result = new();
 
-            result.Success(carList);
+            result.Success(car);
 
             return result;
         }
