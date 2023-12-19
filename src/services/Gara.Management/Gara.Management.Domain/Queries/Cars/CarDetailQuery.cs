@@ -40,7 +40,7 @@ namespace Gara.Management.Domain.Queries.Cars
             {
                 var car = await _repository.GetWithIncludeAsync(
                     c => c.Id == request.Id, 0, 0,
-                    c => c.Owner, c => c.AppointmentSchedules);
+                    c => c.Owner, c => c.AppointmentSchedules, c => c.CarType);
 
                 result.Success(car);
             }

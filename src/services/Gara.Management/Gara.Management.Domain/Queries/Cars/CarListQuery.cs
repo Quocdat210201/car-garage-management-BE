@@ -31,7 +31,7 @@ namespace Gara.Management.Domain.Queries.Cars
             var carList = new List<Car>();
             if (currentUserRole == "Staff" || currentUserRole == "Gara Administrator")
             {
-                carList = (List<Car>)await _repository.GetWithIncludeAsync(null, 0, 0, car => car.Owner);
+                carList = (List<Car>)await _repository.GetWithIncludeAsync(null, 0, 0, car => car.Owner, c => c.CarType);
             }
             else
             {
