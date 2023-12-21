@@ -16,6 +16,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Gara.Exceptions.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Gara.Management.Api.Constants;
+using Gara.Management.Application.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,6 +78,14 @@ builder.Services
             ClockSkew = TimeSpan.Zero // remove delay of token when expire
         };
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(RolePolicy.SYSTEM_ADMIN_POLICY, policy => policy.RequireRole(RoleConstants.SYSTEM_ADMIN));
+    options.AddPolicy(RolePolicy.GARA_ADMIN_POLICY, policy => policy.RequireRole(RoleConstants.GARA_ADMIN));
+    options.AddPolicy(RolePolicy.STAFF_POLICY, policy => policy.RequireRole(RoleConstants.STAFF));
+    options.AddPolicy(RolePolicy.CUSTOMER_POLICY, policy => policy.RequireRole(RoleConstants.CUSTOMER));
+});
 
 // Register the Swagger generator, defining 1 or more Swagger documents
 builder.Services.AddSwaggerGen(c =>

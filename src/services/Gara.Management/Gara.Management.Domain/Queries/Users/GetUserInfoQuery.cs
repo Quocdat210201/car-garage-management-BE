@@ -29,7 +29,7 @@ namespace Gara.Management.Domain.Queries.Users
             ServiceResult result = new();
 
             var userId = _contextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var currentUser = _userManager.FindByIdAsync(userId).Result;
+            var currentUser = await _userManager.FindByIdAsync(userId);
 
             if (currentUser == null)
             {

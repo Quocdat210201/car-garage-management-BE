@@ -11,6 +11,8 @@ namespace Gara.Management.Domain.Commands.Users
 {
     public class UpdateUserInfoCommand : IRequest<ServiceResult>
     {
+        public Guid? Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -42,11 +44,16 @@ namespace Gara.Management.Domain.Commands.Users
         {
             ServiceResult result = new();
 
-            var userId = _contextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var currentUser = _userManager.FindByIdAsync(userId).Result;
+            if (request.Id == null)
+            {
+                request.Id = new Guid(_contextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            }
+
+            var currentUser = _userManager.FindByIdAsync(request.Id.ToString()).Result;
             if (currentUser == null)
             {
                 result.IsSuccess = false;
+                result.ErrorMessages.Add("Not found user by Id");
                 return result;
             }
 
