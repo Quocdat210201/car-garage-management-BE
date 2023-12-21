@@ -12,8 +12,8 @@ namespace Gara.Management.Domain.Commands.Cars
     {
         public Guid Id { get; set; }
 
-        [Required]
-        public string? Name { get; set; }
+        //[Required]
+        //public string? Name { get; set; }
 
         public string? Description { get; set; }
 
@@ -74,7 +74,7 @@ namespace Gara.Management.Domain.Commands.Cars
             await _repository.UpdateAsync(new Car
             {
                 Id = request.Id,
-                Name = request.Name,
+                Name = carType.Name,
                 Description = request.Description,
                 RegistrationNumber = request.RegistrationNumber,
                 CarTypeId = request.CarTypeId
