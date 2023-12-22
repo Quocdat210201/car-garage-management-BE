@@ -2,12 +2,13 @@
 using Gara.Management.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gara.Management.Domain.Queries.Users
 {
     public class GetUsersByRoleQuery : IRequest<ServiceResult>
     {
-        public string Role { get; set; }
+        public string? Role { get; set; }
     }
 
     public class StaffListHandler : IRequestHandler<GetUsersByRoleQuery, ServiceResult>
@@ -23,9 +24,16 @@ namespace Gara.Management.Domain.Queries.Users
         {
             var result = new ServiceResult();
 
-            var users = await _userManager.GetUsersInRoleAsync(request.Role);
-
-            result.Success(users);
+            if (request.Role == null)
+            {
+                var users = await _userManager.Users.ToListAsync(cancellationToken: cancellationToken);
+                result.Success(users);
+            }
+            else
+            {
+                var users = await _userManager.GetUsersInRoleAsync(request.Role);
+                result.Success(users);
+            }
 
             return result;
         }
