@@ -82,8 +82,8 @@ builder.Services
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(RolePolicy.SYSTEM_ADMIN_POLICY, policy => policy.RequireRole(RoleConstants.SYSTEM_ADMIN));
-    options.AddPolicy(RolePolicy.GARA_ADMIN_POLICY, policy => policy.RequireRole(RoleConstants.GARA_ADMIN));
-    options.AddPolicy(RolePolicy.STAFF_POLICY, policy => policy.RequireRole(RoleConstants.STAFF));
+    options.AddPolicy(RolePolicy.GARA_ADMIN_POLICY, policy => policy.RequireRole(RoleConstants.SYSTEM_ADMIN, RoleConstants.GARA_ADMIN));
+    options.AddPolicy(RolePolicy.STAFF_POLICY, policy => policy.RequireRole(RoleConstants.GARA_ADMIN, RoleConstants.STAFF));
     options.AddPolicy(RolePolicy.CUSTOMER_POLICY, policy => policy.RequireRole(RoleConstants.CUSTOMER));
 });
 

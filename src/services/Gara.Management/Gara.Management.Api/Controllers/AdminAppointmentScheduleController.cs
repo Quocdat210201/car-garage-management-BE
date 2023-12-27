@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace Gara.Management.Api.Controllers
 {
     [Route("api/admin-appointment-schedule")]
-    [Authorize(Policy = RolePolicy.GARA_ADMIN_POLICY)]
     [Authorize(Policy = RolePolicy.STAFF_POLICY)]
     public class AdminAppointmentScheduleController : BaseApiController
     {
