@@ -9,6 +9,8 @@ namespace Gara.Management.Domain.Entities
 
         public string? Content { get; set; }
 
+        public string? AdminWorkDetail { get; set; }
+
         public int Status { get; set; }
 
         public ReceiveCarAtEnum? ReceiveCarAt { get; set; }
@@ -18,5 +20,9 @@ namespace Gara.Management.Domain.Entities
         public Guid CarId { get; set; }
 
         public Car Car { get; set; }
+
+        public Guid? StaffId { get; set; }
+
+        public GaraApplicationUser? Staff { get; set; }
     }
 }

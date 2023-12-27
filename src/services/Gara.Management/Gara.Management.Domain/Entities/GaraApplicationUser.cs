@@ -10,6 +10,9 @@ namespace Gara.Management.Domain.Entities
         // List of FixedBills that this user is the staff
         public List<Bill>? FixedBills { get; set; }
 
+        // List of WorkSchedules that this user is the staff
+        public List<AppointmentSchedule>? AppointmentSchedules { get; set; }
+
         public List<Car>? Cars { get; set; }
 
         public Guid? WardId { get; set; }

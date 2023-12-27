@@ -56,9 +56,15 @@ namespace Gara.Management.Application.Data
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Car>()
-            .HasOne(s => s.Owner)
-            .WithMany(g => g.Cars)
-            .HasForeignKey(s => s.OwnerId);
+                .HasOne(s => s.Owner)
+                .WithMany(g => g.Cars)
+                .HasForeignKey(s => s.OwnerId);
+
+            modelBuilder.Entity<AppointmentSchedule>()
+                .HasOne(p => p.Staff)
+                .WithMany(t => t.AppointmentSchedules)
+                .HasForeignKey(m => m.StaffId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
