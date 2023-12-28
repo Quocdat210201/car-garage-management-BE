@@ -30,7 +30,7 @@ namespace Gara.Management.Domain.Queries.Users
 
             var userId = _contextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var currentUser = await _userManager.FindByIdAsync(userId);
-
+            var roles = await _userManager.GetRolesAsync(currentUser);
             if (currentUser == null)
             {
                 result.IsSuccess = false;
@@ -44,7 +44,8 @@ namespace Gara.Management.Domain.Queries.Users
                 Email = currentUser.Email,
                 PhoneNumber = currentUser.PhoneNumber,
                 DateOfBirth = currentUser.DateOfBirth,
-                Address = currentUser.Address
+                Address = currentUser.Address,
+                Roles = roles.ToList()
             };
 
             result.Success(userInfo);

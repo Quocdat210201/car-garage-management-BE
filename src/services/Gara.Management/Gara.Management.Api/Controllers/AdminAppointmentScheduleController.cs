@@ -34,5 +34,14 @@ namespace Gara.Management.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpPut("finish/{id}")]
+        public async Task<IActionResult> StaffUpdateAppointmentSchedule(Guid id, [FromBody] StaffUpdateAppointmentScheduleCommand command, CancellationToken cancellationToken)
+        {
+            command.Id = id;
+            var result = await Mediator.Send(command, cancellationToken);
+
+            return Ok(result);
+        }
     }
 }
