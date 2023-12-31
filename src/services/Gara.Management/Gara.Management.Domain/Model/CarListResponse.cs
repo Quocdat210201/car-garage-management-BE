@@ -1,6 +1,6 @@
 ﻿namespace Gara.Management.Domain.Model
 {
-    public class CarListResponseModel
+    public class CarListResponse
     {
         public Guid Id { get; set; }
 

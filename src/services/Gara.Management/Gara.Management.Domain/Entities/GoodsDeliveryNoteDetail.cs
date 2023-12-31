@@ -10,9 +10,9 @@ namespace Gara.Management.Domain.Entities
 
         public double? Discount { get; set; }
 
-        public Guid AutomotivePartId { get; set; }
+        public Guid AutomotivePartInWarehouseId { get; set; }
 
-        public AutomotivePart AutomotivePart { get; set; }
+        public AutomotivePartInWarehouse AutomotivePartInWarehouse { get; set; }
 
         public Guid GoodsDeliveryNoteId { get; set; }
 

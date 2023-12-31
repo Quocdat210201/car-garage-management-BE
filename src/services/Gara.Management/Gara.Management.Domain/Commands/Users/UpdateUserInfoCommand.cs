@@ -99,7 +99,7 @@ namespace Gara.Management.Domain.Commands.Users
 
             await _userManager.UpdateAsync(currentUser);
 
-            var userInfo = new UserInfoResponseModel
+            var userInfo = new UserInfoResponse
             {
                 Id = currentUser.Id,
                 Name = currentUser.Name,

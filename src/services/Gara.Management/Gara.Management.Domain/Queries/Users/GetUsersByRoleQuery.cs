@@ -35,11 +35,11 @@ namespace Gara.Management.Domain.Queries.Users
             {
                 users = (List<GaraApplicationUser>)await _userManager.GetUsersInRoleAsync(request.Role);
             }
-            var data = new List<UserInfoResponseModel>();
+            var data = new List<UserInfoResponse>();
             foreach (var user in users)
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                var userInfo = new UserInfoResponseModel
+                var userInfo = new UserInfoResponse
                 {
                     Id = user.Id,
                     Name = user.Name,

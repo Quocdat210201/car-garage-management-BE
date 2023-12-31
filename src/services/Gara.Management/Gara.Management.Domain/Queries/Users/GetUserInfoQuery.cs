@@ -37,7 +37,7 @@ namespace Gara.Management.Domain.Queries.Users
                 return result;
             }
 
-            var userInfo = new UserInfoResponseModel
+            var userInfo = new UserInfoResponse
             {
                 Id = currentUser.Id,
                 Name = currentUser.Name,
