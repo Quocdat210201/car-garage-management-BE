@@ -49,7 +49,7 @@ namespace Gara.Management.Domain.Commands.GoodsDeliverys
 
             var goodsDeliveryNoteCode = await _goodsDeliveryNoteRepository.GetWithIncludeAsync(x => x.GoodsDeliveryCode == request.GoodsDeliveryCode);
 
-            if (goodsDeliveryNoteCode != null)
+            if (goodsDeliveryNoteCode.Any())
             {
                 result.IsSuccess = false;
                 result.ErrorMessages = new List<string> { "GoodsDeliveryCode already exists" };
