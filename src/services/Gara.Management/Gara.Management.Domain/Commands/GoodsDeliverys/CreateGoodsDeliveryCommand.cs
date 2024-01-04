@@ -60,12 +60,13 @@ namespace Gara.Management.Domain.Commands.GoodsDeliverys
             {
                 StaffId = request.StaffId,
                 ReceiveDate = request.ReceiveDate,
+                GoodsDeliveryCode = request.GoodsDeliveryCode,
             };
 
             await _goodsDeliveryNoteRepository.AddAsync(goodsDeliveryNote);
 
 
-            request.GoodsDeliveryNoteDetails.ForEach(async x =>
+            foreach (var x in request.GoodsDeliveryNoteDetails)
             {
                 var automotivePart = await _automotivePartRepository.GetByIdAsync(x.AutomotivePartId);
 
@@ -105,9 +106,9 @@ namespace Gara.Management.Domain.Commands.GoodsDeliverys
                 };
 
                 await _goodsDeliveryNoteDetailRepository.AddAsync(goodsDeliveryNoteDetail);
-            });
+            }
 
-            await _goodsDeliveryNoteRepository.SaveChangeAsync();
+            await _goodsDeliveryNoteDetailRepository.SaveChangeAsync();
 
             return result;
         }
