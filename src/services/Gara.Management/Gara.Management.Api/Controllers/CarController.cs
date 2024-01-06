@@ -1,6 +1,7 @@
 ﻿using Gara.Management.Domain.Commands.Cars;
 using Gara.Management.Domain.Queries.Cars;
 using Gara.Management.Domain.Storages;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gara.Management.Api.Controllers
@@ -30,6 +31,15 @@ namespace Gara.Management.Api.Controllers
             var car = await Mediator.Send(new CarDetailQuery(id), cancellationToken);
 
             return Ok(car);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("registration-number")]
+        public async Task<IActionResult> GetCarByRegistrationNumber([FromQuery] string registrationNumber, CancellationToken cancellationToken)
+        {
+            var cars = await Mediator.Send(new CarDetailByRegistrationNumberQuery(registrationNumber), cancellationToken);
+
+            return Ok(cars);
         }
 
         [HttpPost]
