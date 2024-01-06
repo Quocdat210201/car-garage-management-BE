@@ -8,6 +8,13 @@ namespace Gara.Management.Api.Controllers
     [Route("api/automotive-part")]
     public class AutomotivePartController : BaseApiController
     {
+        [HttpGet]
+        public async Task<IActionResult> GetAllAutomotiveParts()
+        {
+            var result = await Mediator.Send(new AutomotivePartsListQuery());
+            return Ok(result);
+        }
+
         [HttpGet("category-supplier")]
         public async Task<IActionResult> GetAutomotivePartsByCategoryAndSupplier([FromQuery] AutomotivePartsByCategoryAndSupplierQuery request, CancellationToken cancellationToken)
         {
