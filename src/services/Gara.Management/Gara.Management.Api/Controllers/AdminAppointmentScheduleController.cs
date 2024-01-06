@@ -35,7 +35,7 @@ namespace Gara.Management.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("finish/{id}")]
+        [HttpPut("staff-update/{id}")]
         public async Task<IActionResult> StaffUpdateAppointmentSchedule(Guid id, [FromBody] StaffUpdateAppointmentScheduleCommand command, CancellationToken cancellationToken)
         {
             command.Id = id;

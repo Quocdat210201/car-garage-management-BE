@@ -11,5 +11,7 @@ namespace Gara.Management.Domain.Entities
         public Guid AutomotivePartId { get; set; }
 
         public AutomotivePart AutomotivePart { get; set; }
+
+        public List<AppointmentScheduleAutomotivePart>? AppointmentScheduleAutomotiveParts { get; set; }
     }
 }
