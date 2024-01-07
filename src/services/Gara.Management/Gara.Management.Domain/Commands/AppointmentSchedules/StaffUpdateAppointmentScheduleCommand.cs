@@ -6,17 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Gara.Management.Domain.Commands.AppointmentSchedules
 {
-    public class AutomotivePartsRequest
-    {
-        public Guid AutomotivePartId { get; set; }
-
-        public int Quantity { get; set; }
-
-    }
-
     public class AppointmentScheduleDetailRequest
     {
-        public List<AutomotivePartsRequest> AutomotivePartsUpdatedRequests { get; set; }
+        public Guid? AutomotivePartId { get; set; }
+
+        public int Quantity { get; set; }
 
         [Required]
         public Guid RepairServiceId { get; set; }
@@ -72,47 +66,44 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                     return result;
                 }
 
-                if (repairServiceUpdateRequest.AutomotivePartsUpdatedRequests.Any()) continue;
+                if (repairServiceUpdateRequest.AutomotivePartId == null) continue;
 
-                foreach (var automotivePartsUpdatedRequest in repairServiceUpdateRequest.AutomotivePartsUpdatedRequests)
+                var automotivePartInWarehouseList = await _automotivePartInWarehouseRepository
+                .ListAsync(a => a.AutomotivePartId == repairServiceUpdateRequest.AutomotivePartId);
+
+                var automotivePartInWarehouse = automotivePartInWarehouseList.FirstOrDefault();
+
+                if (automotivePartInWarehouse == null)
                 {
-                    var automotivePartInWarehouseList = await _automotivePartInWarehouseRepository
-                    .ListAsync(a => a.AutomotivePartId == automotivePartsUpdatedRequest.AutomotivePartId);
-
-                    var automotivePartInWarehouse = automotivePartInWarehouseList.FirstOrDefault();
-
-                    if (automotivePartInWarehouse == null)
-                    {
-                        result.IsSuccess = false;
-                        result.ErrorMessages = new List<string> { $"Not found Automotive Part by id {automotivePartsUpdatedRequest.AutomotivePartId}" };
-                        return result;
-                    }
-
-                    if (automotivePartInWarehouse.Quantity < automotivePartsUpdatedRequest.Quantity)
-                    {
-                        result.IsSuccess = false;
-                        result.ErrorMessages = new List<string> { $"Automotive Part by id {automotivePartsUpdatedRequest.AutomotivePartId} is not enough" };
-                        return result;
-                    }
-
-                    automotivePartInWarehouse.Quantity -= automotivePartsUpdatedRequest.Quantity;
-
-                    await _automotivePartInWarehouseRepository.UpdateAsync(automotivePartInWarehouse);
-
-                    var appointmentScheduleDetail = _appointmentScheduleDetailRepository.ListAsync(a => a.AppointmentScheduleId == appointmentSchedule.Id && a.RepairServiceId == repairServiceUpdateRequest.RepairServiceId).Result.FirstOrDefault();
-
-                    if (appointmentScheduleDetail == null)
-                    {
-                        result.IsSuccess = false;
-                        result.ErrorMessages = new List<string> { $"Not found Appointment Schedule Detail by appointmentScheduleId {appointmentSchedule.Id} & RepairServiceId {repairServiceUpdateRequest.RepairServiceId}" };
-                        return result;
-                    }
-
-                    appointmentScheduleDetail.Quantity = automotivePartsUpdatedRequest.Quantity;
-                    appointmentScheduleDetail.AutomotivePartInWarehouseId = automotivePartInWarehouse.Id;
-
-                    await _appointmentScheduleDetailRepository.UpdateAsync(appointmentScheduleDetail);
+                    result.IsSuccess = false;
+                    result.ErrorMessages = new List<string> { $"Not found Automotive Part by id {repairServiceUpdateRequest.AutomotivePartId}" };
+                    return result;
                 }
+
+                if (automotivePartInWarehouse.Quantity < repairServiceUpdateRequest.Quantity)
+                {
+                    result.IsSuccess = false;
+                    result.ErrorMessages = new List<string> { $"Automotive Part by id {repairServiceUpdateRequest.AutomotivePartId} is not enough" };
+                    return result;
+                }
+
+                automotivePartInWarehouse.Quantity -= repairServiceUpdateRequest.Quantity;
+
+                var appointmentScheduleDetail = _appointmentScheduleDetailRepository.ListAsync(a => a.AppointmentScheduleId == appointmentSchedule.Id && a.RepairServiceId == repairServiceUpdateRequest.RepairServiceId).Result.FirstOrDefault();
+
+                if (appointmentScheduleDetail == null)
+                {
+                    result.IsSuccess = false;
+                    result.ErrorMessages = new List<string> { $"Not found Appointment Schedule Detail by appointmentScheduleId {appointmentSchedule.Id} & RepairServiceId {repairServiceUpdateRequest.RepairServiceId}" };
+                    return result;
+                }
+
+                appointmentScheduleDetail.Quantity = automotivePartInWarehouse.Quantity;
+                appointmentScheduleDetail.AutomotivePartInWarehouseId = automotivePartInWarehouse.Id;
+
+                await _automotivePartInWarehouseRepository.UpdateAsync(automotivePartInWarehouse);
+
+                await _appointmentScheduleDetailRepository.UpdateAsync(appointmentScheduleDetail);
             }
 
             appointmentSchedule.Status = request.Status;
