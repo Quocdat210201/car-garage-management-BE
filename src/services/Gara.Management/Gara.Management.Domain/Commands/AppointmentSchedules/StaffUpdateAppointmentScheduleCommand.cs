@@ -33,16 +33,19 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
         private readonly IRepository<AppointmentScheduleDetail> _appointmentScheduleDetailRepository;
         private readonly IRepository<AutomotivePart> _automotivePartRepository;
         private readonly IRepository<AutomotivePartInWarehouse> _automotivePartInWarehouseRepository;
+        private readonly IRepository<RepairService> _repairServiceRepository;
 
         public StaffUpdateAppointmentScheduleHandler(IRepository<AppointmentSchedule> repository,
             IRepository<AutomotivePart> automotivePartRepository,
             IRepository<AutomotivePartInWarehouse> automotivePartInWarehouseRepository,
-            IRepository<AppointmentScheduleDetail> appointmentScheduleDetailRepository)
+            IRepository<AppointmentScheduleDetail> appointmentScheduleDetailRepository,
+            IRepository<RepairService> repairServiceRepository)
         {
             _repository = repository;
             _automotivePartRepository = automotivePartRepository;
             _automotivePartInWarehouseRepository = automotivePartInWarehouseRepository;
             _appointmentScheduleDetailRepository = appointmentScheduleDetailRepository;
+            _repairServiceRepository = repairServiceRepository;
         }
 
         public async Task<ServiceResult> Handle(StaffUpdateAppointmentScheduleCommand request, CancellationToken cancellationToken)
@@ -58,7 +61,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
 
             foreach (var repairServiceUpdateRequest in request.RepairServiceUpdateRequests)
             {
-                var repairService = await _automotivePartRepository.GetByIdAsync(repairServiceUpdateRequest.RepairServiceId);
+                var repairService = await _repairServiceRepository.GetByIdAsync(repairServiceUpdateRequest.RepairServiceId);
                 if (repairService == null)
                 {
                     result.IsSuccess = false;
