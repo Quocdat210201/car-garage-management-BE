@@ -83,6 +83,7 @@ namespace Gara.Management.Domain.Commands.GoodsDeliverys
                 {
                     automotivePartInWarehouse = new AutomotivePartInWarehouse
                     {
+                        ReceivePrice = x.Price,
                         AutomotivePartId = x.AutomotivePartId,
                         Quantity = x.Quantity,
                     };
@@ -92,6 +93,7 @@ namespace Gara.Management.Domain.Commands.GoodsDeliverys
                 {
                     automotivePartInWarehouse.Quantity += x.Quantity;
                     automotivePartInWarehouse.UpdatedOn = DateTime.Now;
+                    automotivePartInWarehouse.ReceivePrice = x.Price;
 
                     await _automotivePartInWarehouseRepository.UpdateAsync(automotivePartInWarehouse);
                 }
