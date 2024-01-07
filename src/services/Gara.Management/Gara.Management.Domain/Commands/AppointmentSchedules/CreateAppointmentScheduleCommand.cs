@@ -16,17 +16,23 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
         private readonly IRepository<AppointmentSchedule> _appointmentScheduleRepository;
         private readonly ICarRepository _carRepository;
         private readonly IRepository<Car> _efCarRepository;
+        private readonly IRepository<AppointmentScheduleDetail> _appointmentScheduleDetailRepository;
+        private readonly IRepository<RepairService> _repairServiceRepository;
 
 
         public CreateAppointmentScheduleCommandHandler(UserManager<GaraApplicationUser> userManager,
             IRepository<AppointmentSchedule> appointmentScheduleRepository,
             ICarRepository carRepository,
-            IRepository<Car> efCarRepository)
+            IRepository<Car> efCarRepository,
+            IRepository<AppointmentScheduleDetail> appointmentScheduleDetailRepository,
+            IRepository<RepairService> repairServiceRepository)
         {
             _userManager = userManager;
             _appointmentScheduleRepository = appointmentScheduleRepository;
             _carRepository = carRepository;
             _efCarRepository = efCarRepository;
+            _appointmentScheduleDetailRepository = appointmentScheduleDetailRepository;
+            _repairServiceRepository = repairServiceRepository;
         }
 
         public async Task<ServiceResult> Handle(CreateAppointmentScheduleCommand request, CancellationToken cancellationToken)
@@ -80,6 +86,24 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
 
             await _appointmentScheduleRepository.AddAsync(appointmentSchedule);
 
+            foreach (var repairServiceId in request.RepairServiceIds)
+            {
+                var repairService = await _repairServiceRepository.GetByIdAsync(repairServiceId);
+                if (repairService == null)
+                {
+                    serviceResult.ErrorMessages.Add($"Not found Repair Service by id {repairServiceId}");
+                    return serviceResult;
+                }
+
+                var appointmentScheduleDetail = new AppointmentScheduleDetail
+                {
+                    AppointmentScheduleId = appointmentSchedule.Id,
+                    RepairServiceId = repairServiceId
+                };
+
+                await _appointmentScheduleDetailRepository.AddAsync(appointmentScheduleDetail);
+            }
+
             await _appointmentScheduleRepository.SaveChangeAsync();
             serviceResult.Success(appointmentSchedule);
             return serviceResult;
@@ -117,6 +141,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
 
         public string? ManufacturingYear { get; set; }
 
+        [Required]
         public List<Guid> RepairServiceIds { get; set; }
 
         public ReceiveCarAtEnum ReceiveCarAt { get; set; }

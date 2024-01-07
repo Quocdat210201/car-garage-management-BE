@@ -25,6 +25,6 @@ namespace Gara.Management.Domain.Entities
 
         public GaraApplicationUser? Staff { get; set; }
 
-        public List<AppointmentScheduleAutomotivePart>? AppointmentScheduleAutomotiveParts { get; set; }
+        public List<AppointmentScheduleDetail>? AppointmentScheduleDetails { get; set; }
     }
 }

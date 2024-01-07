@@ -16,6 +16,6 @@ namespace Gara.Management.Domain.Entities
 
         public string? Note { get; set; }
 
-        public List<AutomotivePart> Parts { get; set; }
+        public List<AppointmentScheduleDetail> AppointmentScheduleDetails { get; set; }
     }
 }

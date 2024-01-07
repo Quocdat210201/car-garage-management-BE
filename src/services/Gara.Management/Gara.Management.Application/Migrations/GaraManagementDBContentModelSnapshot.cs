@@ -85,7 +85,7 @@ namespace Gara.Management.Application.Migrations
                     b.ToTable("AppointmentSchedules");
                 });
 
-            modelBuilder.Entity("Gara.Management.Domain.Entities.AppointmentScheduleAutomotivePart", b =>
+            modelBuilder.Entity("Gara.Management.Domain.Entities.AppointmentScheduleDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,7 +94,10 @@ namespace Gara.Management.Application.Migrations
                     b.Property<Guid>("AppointmentScheduleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AutomotivePartInWarehouseId")
+                    b.Property<Guid?>("AutomotivePartInWarehouseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BillId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CreatedBy")
@@ -121,6 +124,9 @@ namespace Gara.Management.Application.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("RepairServiceId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -133,7 +139,11 @@ namespace Gara.Management.Application.Migrations
 
                     b.HasIndex("AutomotivePartInWarehouseId");
 
-                    b.ToTable("AppointmentScheduleAutomotiveParts");
+                    b.HasIndex("BillId");
+
+                    b.HasIndex("RepairServiceId");
+
+                    b.ToTable("AppointmentScheduleDetails");
                 });
 
             modelBuilder.Entity("Gara.Management.Domain.Entities.AutomotivePart", b =>
@@ -173,9 +183,6 @@ namespace Gara.Management.Application.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<Guid?>("RepairServiceId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -187,8 +194,6 @@ namespace Gara.Management.Application.Migrations
                     b.HasIndex("AutomotivePartSupplierId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("RepairServiceId");
 
                     b.ToTable("AutomotiveParts");
                 });
@@ -392,54 +397,6 @@ namespace Gara.Management.Application.Migrations
                     b.HasIndex("StaffId");
 
                     b.ToTable("Bills");
-                });
-
-            modelBuilder.Entity("Gara.Management.Domain.Entities.BillDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BillId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("IsActived")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("RepairServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BillId");
-
-                    b.HasIndex("RepairServiceId");
-
-                    b.ToTable("BillDetails");
                 });
 
             modelBuilder.Entity("Gara.Management.Domain.Entities.Car", b =>
@@ -1098,23 +1055,35 @@ namespace Gara.Management.Application.Migrations
                     b.Navigation("Staff");
                 });
 
-            modelBuilder.Entity("Gara.Management.Domain.Entities.AppointmentScheduleAutomotivePart", b =>
+            modelBuilder.Entity("Gara.Management.Domain.Entities.AppointmentScheduleDetail", b =>
                 {
                     b.HasOne("Gara.Management.Domain.Entities.AppointmentSchedule", "AppointmentSchedule")
-                        .WithMany("AppointmentScheduleAutomotiveParts")
+                        .WithMany("AppointmentScheduleDetails")
                         .HasForeignKey("AppointmentScheduleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Gara.Management.Domain.Entities.AutomotivePartInWarehouse", "AutomotivePartInWarehouse")
                         .WithMany("AppointmentScheduleAutomotiveParts")
-                        .HasForeignKey("AutomotivePartInWarehouseId")
+                        .HasForeignKey("AutomotivePartInWarehouseId");
+
+                    b.HasOne("Gara.Management.Domain.Entities.Bill", "Bill")
+                        .WithMany("Details")
+                        .HasForeignKey("BillId");
+
+                    b.HasOne("Gara.Management.Domain.Entities.RepairService", "RepairService")
+                        .WithMany("AppointmentScheduleDetails")
+                        .HasForeignKey("RepairServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppointmentSchedule");
 
                     b.Navigation("AutomotivePartInWarehouse");
+
+                    b.Navigation("Bill");
+
+                    b.Navigation("RepairService");
                 });
 
             modelBuilder.Entity("Gara.Management.Domain.Entities.AutomotivePart", b =>
@@ -1130,10 +1099,6 @@ namespace Gara.Management.Application.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Gara.Management.Domain.Entities.RepairService", null)
-                        .WithMany("Parts")
-                        .HasForeignKey("RepairServiceId");
 
                     b.Navigation("AutomotivePartSupplier");
 
@@ -1176,25 +1141,6 @@ namespace Gara.Management.Application.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Staff");
-                });
-
-            modelBuilder.Entity("Gara.Management.Domain.Entities.BillDetail", b =>
-                {
-                    b.HasOne("Gara.Management.Domain.Entities.Bill", "Bill")
-                        .WithMany("Details")
-                        .HasForeignKey("BillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Gara.Management.Domain.Entities.RepairService", "RepairService")
-                        .WithMany()
-                        .HasForeignKey("RepairServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bill");
-
-                    b.Navigation("RepairService");
                 });
 
             modelBuilder.Entity("Gara.Management.Domain.Entities.Car", b =>
@@ -1341,7 +1287,7 @@ namespace Gara.Management.Application.Migrations
 
             modelBuilder.Entity("Gara.Management.Domain.Entities.AppointmentSchedule", b =>
                 {
-                    b.Navigation("AppointmentScheduleAutomotiveParts");
+                    b.Navigation("AppointmentScheduleDetails");
                 });
 
             modelBuilder.Entity("Gara.Management.Domain.Entities.AutomotivePartCategory", b =>
@@ -1404,7 +1350,7 @@ namespace Gara.Management.Application.Migrations
 
             modelBuilder.Entity("Gara.Management.Domain.Entities.RepairService", b =>
                 {
-                    b.Navigation("Parts");
+                    b.Navigation("AppointmentScheduleDetails");
                 });
 #pragma warning restore 612, 618
         }

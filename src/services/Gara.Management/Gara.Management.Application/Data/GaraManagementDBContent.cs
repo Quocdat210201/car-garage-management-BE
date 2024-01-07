@@ -13,17 +13,15 @@ namespace Gara.Management.Application.Data
 
         public virtual DbSet<AppointmentSchedule> AppointmentSchedules { get; set; }
 
-        public virtual DbSet<AutomotivePart> AutomotiveParts { get; set; }
+        public virtual DbSet<AppointmentScheduleDetail> AppointmentScheduleDetails { get; set; }
 
-        public virtual DbSet<AppointmentScheduleAutomotivePart> AppointmentScheduleAutomotiveParts { get; set; }
+        public virtual DbSet<AutomotivePart> AutomotiveParts { get; set; }
 
         public virtual DbSet<AutomotivePartInWarehouse> AutomotivePartInWarehouses { get; set; }
 
         public virtual DbSet<AutomotivePartSupplier> AutomotivePartSuppliers { get; set; }
 
         public virtual DbSet<Bill> Bills { get; set; }
-
-        public virtual DbSet<BillDetail> BillDetails { get; set; }
 
         public virtual DbSet<CarBrand> CarBrands { get; set; }
 
