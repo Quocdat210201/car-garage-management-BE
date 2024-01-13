@@ -40,6 +40,12 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                 return result;
             }
 
+            if (appointmentSchedule.Status != 1)
+            {
+                result.ErrorMessages = new List<string> { $"Appointment Schedule by id {request.Id} is not in progress" };
+                return result;
+            }
+
             appointmentSchedule.Status = 2;
             await _repository.UpdateAsync(appointmentSchedule);
 
