@@ -28,7 +28,7 @@ namespace Gara.Management.Domain.Queries.Bills
         {
             var result = new ServiceResult();
 
-            var bill = await _repository.GetWithIncludeAsync(p => p.Id == request.Id, 0, 0, b => b.Car, b => b.Customer);
+            var bill = await _repository.GetWithIncludeAsync(p => p.Id == request.Id, 0, 0, b => b.Car, b => b.Customer, b => b.Details);
 
             result.Success(bill);
 
