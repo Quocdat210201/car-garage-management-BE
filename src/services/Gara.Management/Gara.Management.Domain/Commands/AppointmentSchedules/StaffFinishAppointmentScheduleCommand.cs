@@ -40,6 +40,12 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                 return result;
             }
 
+            if (appointmentSchedule.Status != 1)
+            {
+                result.ErrorMessages = new List<string> { $"Appointment Schedule by id {request.Id} is not in progress" };
+                return result;
+            }
+
             appointmentSchedule.Status = 2;
             await _repository.UpdateAsync(appointmentSchedule);
 
@@ -53,6 +59,8 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                 Total = 0,
                 PaymentStatus = 0,
             };
+
+            await _billRepository.AddAsync(bill);
 
             var appointmentScheduleDetails = await _appointmentScheduleDetailRepository.GetWithIncludeAsync(x => x.AppointmentScheduleId == appointmentSchedule.Id, 0, 0, a => a.RepairService, a => a.AutomotivePartInWarehouse);
 
@@ -71,7 +79,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                 await _appointmentScheduleDetailRepository.UpdateAsync(appointmentScheduleDetail);
             }
 
-            await _billRepository.AddAsync(bill);
+            await _billRepository.UpdateAsync(bill);
 
             await _repository.SaveChangeAsync();
 
