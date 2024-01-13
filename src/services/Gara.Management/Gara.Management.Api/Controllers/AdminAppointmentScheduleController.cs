@@ -10,6 +10,15 @@ namespace Gara.Management.Api.Controllers
     [Authorize(Policy = RolePolicy.STAFF_POLICY)]
     public class AdminAppointmentScheduleController : BaseApiController
     {
+        [HttpGet("registration-number")]
+        public async Task<IActionResult> GetAppointmentScheduleByRegistrationNumber([FromQuery] AdminAppointmentScheduleRegistrationNumberQuery request, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(request, cancellationToken);
+
+            return Ok(result);
+        }
+
+
         [HttpGet("by-staff/{staffId}")]
         public async Task<IActionResult> GetAppointmentSchedulesByStaff(Guid staffId, CancellationToken cancellationToken)
         {
@@ -40,6 +49,14 @@ namespace Gara.Management.Api.Controllers
         {
             command.Id = id;
             var result = await Mediator.Send(command, cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpPut("staff-finish/{id}")]
+        public async Task<IActionResult> StaffFinishAppointmentSchedule(Guid id, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(new StaffFinishAppointmentScheduleCommand(id), cancellationToken);
 
             return Ok(result);
         }

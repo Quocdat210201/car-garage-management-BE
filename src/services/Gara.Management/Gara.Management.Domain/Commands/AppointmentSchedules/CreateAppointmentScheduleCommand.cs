@@ -81,7 +81,8 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                 Status = 0,
                 ReceiveCarAt = request.ReceiveCarAt,
                 ReceiveCarAddress = request.Address,
-                CarId = car.Id
+                CarId = car.Id,
+                CreatedOn = DateTime.Now,
             };
 
             await _appointmentScheduleRepository.AddAsync(appointmentSchedule);
