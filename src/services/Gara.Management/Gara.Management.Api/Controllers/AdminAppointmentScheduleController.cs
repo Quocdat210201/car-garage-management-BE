@@ -10,6 +10,15 @@ namespace Gara.Management.Api.Controllers
     [Authorize(Policy = RolePolicy.STAFF_POLICY)]
     public class AdminAppointmentScheduleController : BaseApiController
     {
+        [HttpGet("registration-number")]
+        public async Task<IActionResult> GetAppointmentScheduleByRegistrationNumber([FromQuery] AdminAppointmentScheduleRegistrationNumberQuery request, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(request, cancellationToken);
+
+            return Ok(result);
+        }
+
+
         [HttpGet("by-staff/{staffId}")]
         public async Task<IActionResult> GetAppointmentSchedulesByStaff(Guid staffId, CancellationToken cancellationToken)
         {
