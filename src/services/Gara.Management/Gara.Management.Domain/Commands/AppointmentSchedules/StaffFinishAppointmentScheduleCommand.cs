@@ -53,6 +53,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
             {
                 Id = Guid.NewGuid(),
                 ReceiveCarDate = appointmentSchedule.AppointmentDate,
+                ReturnCarDate = DateTime.Now,
                 CarId = appointmentSchedule.CarId,
                 StaffId = (Guid)appointmentSchedule.StaffId,
                 CustomerId = (Guid)appointmentSchedule.Car.OwnerId,
