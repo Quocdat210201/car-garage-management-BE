@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Gara.Management.Api.Controllers
 {
     [Authorize(Policy = RolePolicy.STAFF_POLICY)]
-    [Route("api/automotive-part")]
+    [Route("api/automotive-part-in-warehouse")]
     public class AutomotivePartInWarehouseController : BaseApiController
     {
         [HttpGet]
