@@ -75,7 +75,7 @@ namespace Gara.Management.Domain.Commands.GoodsDeliverys
                     throw (new Exception("Not found AutomotivePart by Id"));
                 }
 
-                var automotivePartInWarehouses = await _automotivePartInWarehouseRepository.GetWithIncludeAsync(x => x.AutomotivePartId == x.AutomotivePartId);
+                var automotivePartInWarehouses = await _automotivePartInWarehouseRepository.GetWithIncludeAsync(a => a.AutomotivePartId == x.AutomotivePartId);
 
                 var automotivePartInWarehouse = automotivePartInWarehouses.FirstOrDefault();
 
