@@ -101,7 +101,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                     return result;
                 }
 
-                appointmentScheduleDetail.Quantity = automotivePartInWarehouse.Quantity;
+                appointmentScheduleDetail.Quantity = repairServiceUpdateRequest.Quantity;
                 appointmentScheduleDetail.AutomotivePartInWarehouseId = automotivePartInWarehouse.Id;
 
                 await _automotivePartInWarehouseRepository.UpdateAsync(automotivePartInWarehouse);
