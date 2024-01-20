@@ -81,7 +81,6 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
 
                 await _appointmentScheduleDetailRepository.UpdateAsync(appointmentScheduleDetail);
             }
-
             await _billRepository.UpdateAsync(bill);
 
             var notification = new Notification
@@ -95,6 +94,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
             };
 
             await _notificationRepository.AddAsync(notification);
+
 
             await _repository.SaveChangeAsync();
 

@@ -28,6 +28,6 @@ namespace Gara.Management.Domain.Entities
 
         public GaraApplicationUser Customer { get; set; }
 
-        public Notification Notification { get; set; }
+        public Notification? Notification { get; set; }
     }
 }
