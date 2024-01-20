@@ -53,6 +53,8 @@ namespace Gara.Management.Api.Extensions
             services.AddScoped<IRepository<Ward>, EfRepository<GaraManagementDBContent, Ward>>();
             services.AddScoped<IRepository<District>, EfRepository<GaraManagementDBContent, District>>();
 
+            services.AddScoped<IRepository<Notification>, EfRepository<GaraManagementDBContent, Notification>>();
+
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IAppointmentScheduleRepository, AppointmentScheduleRepository>();
             return services;

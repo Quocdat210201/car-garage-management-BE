@@ -13,6 +13,8 @@ namespace Gara.Management.Domain.Entities
         // List of WorkSchedules that this user is the staff
         public List<AppointmentSchedule>? AppointmentSchedules { get; set; }
 
+        public List<Notification>? Notifications { get; set; }
+
         public List<Car>? Cars { get; set; }
 
         public Guid? WardId { get; set; }

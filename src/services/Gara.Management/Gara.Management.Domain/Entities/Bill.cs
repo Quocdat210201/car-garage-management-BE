@@ -27,5 +27,7 @@ namespace Gara.Management.Domain.Entities
         public Guid CustomerId { get; set; }
 
         public GaraApplicationUser Customer { get; set; }
+
+        public Notification Notification { get; set; }
     }
 }

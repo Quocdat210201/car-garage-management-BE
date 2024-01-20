@@ -11,6 +11,8 @@ namespace Gara.Management.Domain.Entities
 
         public string? AdminWorkDetail { get; set; }
 
+        public string? StaffWorkDetail { get; set; }
+
         public int Status { get; set; }
 
         public ReceiveCarAtEnum? ReceiveCarAt { get; set; }

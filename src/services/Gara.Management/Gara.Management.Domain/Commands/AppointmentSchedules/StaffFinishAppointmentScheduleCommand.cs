@@ -20,12 +20,14 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
         private readonly IRepository<AppointmentSchedule> _repository;
         private readonly IRepository<Bill> _billRepository;
         private readonly IRepository<AppointmentScheduleDetail> _appointmentScheduleDetailRepository;
+        private readonly IRepository<Notification> _notificationRepository;
 
-        public StaffFinishAppointmentScheduleHandler(IRepository<AppointmentSchedule> repository, IRepository<AppointmentScheduleDetail> appointmentScheduleDetailRepository, IRepository<Bill> billRepository)
+        public StaffFinishAppointmentScheduleHandler(IRepository<AppointmentSchedule> repository, IRepository<AppointmentScheduleDetail> appointmentScheduleDetailRepository, IRepository<Bill> billRepository, IRepository<Notification> notificationRepository)
         {
             _repository = repository;
             _appointmentScheduleDetailRepository = appointmentScheduleDetailRepository;
             _billRepository = billRepository;
+            _notificationRepository = notificationRepository;
         }
 
         public async Task<ServiceResult> Handle(StaffFinishAppointmentScheduleCommand request, CancellationToken cancellationToken)
@@ -82,8 +84,21 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
 
             await _billRepository.UpdateAsync(bill);
 
+            var notification = new Notification
+            {
+                Id = Guid.NewGuid(),
+                Title = "Thông báo Xe của bạn đã sửa xong.",
+                Content = $"Thông báo Xe của bạn đã sửa xong. Bạn vui lòng đến cửa hàng thanh toán hóa đơn và nhận xe!",
+                IsRead = false,
+                UserId = appointmentSchedule.Car.OwnerId,
+                BillId = bill.Id
+            };
+
+            await _notificationRepository.AddAsync(notification);
+
             await _repository.SaveChangeAsync();
 
+            result.IsSuccess = true;
             return result;
         }
     }

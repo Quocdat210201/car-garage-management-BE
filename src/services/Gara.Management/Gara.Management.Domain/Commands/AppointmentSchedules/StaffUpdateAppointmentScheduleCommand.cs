@@ -25,6 +25,8 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
         public List<AppointmentScheduleDetailRequest> RepairServiceUpdateRequests { get; set; }
 
         public int Status { get; set; }
+
+        public string? StaffWorkDetail { get; set; }
     }
 
     public class StaffUpdateAppointmentScheduleHandler : IRequestHandler<StaffUpdateAppointmentScheduleCommand, ServiceResult>
@@ -109,6 +111,7 @@ namespace Gara.Management.Domain.Commands.AppointmentSchedules
                 await _appointmentScheduleDetailRepository.UpdateAsync(appointmentScheduleDetail);
             }
 
+            appointmentSchedule.StaffWorkDetail = request.StaffWorkDetail;
             appointmentSchedule.Status = request.Status;
 
             await _repository.UpdateAsync(appointmentSchedule);

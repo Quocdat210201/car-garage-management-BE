@@ -4,6 +4,7 @@ using Gara.Management.Application.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gara.Management.Application.Migrations
 {
     [DbContext(typeof(GaraManagementDBContent))]
-    partial class GaraManagementDBContentModelSnapshot : ModelSnapshot
+    [Migration("20240120082230_create-notification-entity")]
+    partial class createnotificationentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

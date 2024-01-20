@@ -41,6 +41,8 @@ namespace Gara.Management.Application.Data
 
         public virtual DbSet<Ward> Wards { get; set; }
 
+        public virtual DbSet<Notification> Notifications { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -66,6 +68,12 @@ namespace Gara.Management.Application.Data
                 .HasOne(p => p.Staff)
                 .WithMany(t => t.AppointmentSchedules)
                 .HasForeignKey(m => m.StaffId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(p => p.User)
+                .WithMany(t => t.Notifications)
+                .HasForeignKey(m => m.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }
