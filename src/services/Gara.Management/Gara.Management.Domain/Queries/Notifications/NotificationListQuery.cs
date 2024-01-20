@@ -29,7 +29,7 @@ namespace Gara.Management.Domain.Queries.Notifications
 
             var currentUserId = _contextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var notifications = await _notificationRepository.GetWithIncludeAsync(n => n.UserId == Guid.Parse(currentUserId), 0, 0, n => n.Bill);
+            var notifications = await _notificationRepository.GetWithIncludeAsync(n => n.UserId == Guid.Parse(currentUserId), 0, 0, n => n.Bill, n => n.Bill.Details);
 
             result.Success(notifications);
 
