@@ -28,7 +28,7 @@ namespace Gara.Management.Domain.Queries.Notifications
         {
             var result = new ServiceResult();
 
-            var notification = await _notificationRepository.GetWithIncludeAsync(x => x.Id == request.Id, 0, 0, x => x.Bill, n => n.Bill.Details);
+            var notification = await _notificationRepository.GetWithIncludeAsync(x => x.Id == request.Id, 0, 0, x => x.Bill, n => n.Bill.Details, n => n.Bill.Car);
 
             result.Success(notification.FirstOrDefault());
 
