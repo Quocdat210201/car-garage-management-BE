@@ -18,20 +18,30 @@ namespace Gara.Management.Domain.Queries.Notifications
     public class NotificationDetailQueryHandler : IRequestHandler<NotificationDetailQuery, ServiceResult>
     {
         private readonly IRepository<Notification> _notificationRepository;
+        private readonly IRepository<AutomotivePartInWarehouse> _automotivePartInWarehouseRepository;
 
-        public NotificationDetailQueryHandler(IRepository<Notification> notificationRepository)
+        public NotificationDetailQueryHandler(IRepository<Notification> notificationRepository, IRepository<AutomotivePartInWarehouse> automotivePartInWarehouseRepository)
         {
             _notificationRepository = notificationRepository;
+            _automotivePartInWarehouseRepository = automotivePartInWarehouseRepository;
         }
 
         public async Task<ServiceResult> Handle(NotificationDetailQuery request, CancellationToken cancellationToken)
         {
             var result = new ServiceResult();
 
-            var notification = await _notificationRepository.GetWithIncludeAsync(x => x.Id == request.Id, 0, 0, x => x.Bill, n => n.Bill.Details, n => n.Bill.Car);
+            var notifications = await _notificationRepository.GetWithIncludeAsync(x => x.Id == request.Id, 0, 0, x => x.Bill, n => n.Bill.Details, n => n.Bill.Car);
 
-            result.Success(notification.FirstOrDefault());
+            var notification = notifications.First();
 
+            foreach (var n in notification.Bill.Details)
+            {
+                var automotivePartInWarehouse = await _automotivePartInWarehouseRepository.GetWithIncludeAsync(x => x.Id == n.AutomotivePartInWarehouseId, 0, 0, x => x.AutomotivePart);
+
+                n.AutomotivePartInWarehouse = automotivePartInWarehouse.First();
+            }
+
+            result.Success(notification);
             return result;
         }
     }
