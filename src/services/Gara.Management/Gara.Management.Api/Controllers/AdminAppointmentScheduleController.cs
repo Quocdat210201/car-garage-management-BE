@@ -27,6 +27,14 @@ namespace Gara.Management.Api.Controllers
             return Ok(appointmentSchedules);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAppointmentSchedulesDetail(Guid id, CancellationToken cancellationToken)
+        {
+            var appointmentSchedules = await Mediator.Send(new AdminAppointmentScheduleDetailQuery(id), cancellationToken);
+
+            return Ok(appointmentSchedules);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAppointmentSchedules(CancellationToken cancellationToken)
         {
