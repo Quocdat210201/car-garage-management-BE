@@ -1,4 +1,4 @@
-﻿namespace Gara.Extensions
+﻿namespace Gara.Extension
 {
     public static class StringExtension
     {

@@ -1,5 +1,5 @@
 ﻿using Gara.Domain.ServiceResults;
-using Gara.Extensions;
+using Gara.Extension;
 using Gara.Management.Domain.Entities;
 using Gara.Management.Domain.Enums;
 using Gara.Management.Domain.Repositories;

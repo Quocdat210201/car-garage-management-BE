@@ -3,7 +3,7 @@ using Gara.Management.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using Gara.Extensions;
+using Gara.Extension;
 
 namespace Gara.Management.Domain.Commands.Accounts
 {
