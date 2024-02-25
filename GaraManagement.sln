@@ -45,13 +45,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Media.Api", "src\servi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gara.Aws", "Gara.Aws", "{B9DDAC25-EA18-4A41-AF56-415FA7C3EC31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gara.Storage.S3.Application", "src\services\Gara.Aws\Gara.Storage.S3.Application\Gara.Storage.S3.Application.csproj", "{E92B0813-C9F4-483A-B7A7-6EE8595BE196}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Storage.S3.Application", "src\services\Gara.Aws\Gara.Storage.S3.Application\Gara.Storage.S3.Application.csproj", "{E92B0813-C9F4-483A-B7A7-6EE8595BE196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gara.Storage.S3.Api", "src\services\Gara.Aws\Gara.Storage.S3.Api\Gara.Storage.S3.Api.csproj", "{9DD995F8-7E1E-4B48-AA76-6BA344097EF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Storage.S3.Api", "src\services\Gara.Aws\Gara.Storage.S3.Api\Gara.Storage.S3.Api.csproj", "{9DD995F8-7E1E-4B48-AA76-6BA344097EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gara.Storage.S3.Domain", "src\service\Gara.Aws\Gara.Storage.S3.Domain\Gara.Storage.S3.Domain.csproj", "{F308CF45-2CA2-45AC-8941-382DCA04C2BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Storage.S3.Domain", "src\service\Gara.Aws\Gara.Storage.S3.Domain\Gara.Storage.S3.Domain.csproj", "{F308CF45-2CA2-45AC-8941-382DCA04C2BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gara.Extension", "src\framework\Gara.Extension\Gara.Extension.csproj", "{D711C1AC-BDC1-4F0D-894E-113BB6F65043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gara.Extension", "src\framework\Gara.Extension\Gara.Extension.csproj", "{D711C1AC-BDC1-4F0D-894E-113BB6F65043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gara.Storage.S3.Api.Test", "test\Gara.Storage.S3.Api.Test\Gara.Storage.S3.Api.Test.csproj", "{DC0CEEE5-8502-4B00-AE60-F80ADA6B333F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{D711C1AC-BDC1-4F0D-894E-113BB6F65043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D711C1AC-BDC1-4F0D-894E-113BB6F65043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D711C1AC-BDC1-4F0D-894E-113BB6F65043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC0CEEE5-8502-4B00-AE60-F80ADA6B333F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC0CEEE5-8502-4B00-AE60-F80ADA6B333F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC0CEEE5-8502-4B00-AE60-F80ADA6B333F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC0CEEE5-8502-4B00-AE60-F80ADA6B333F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,6 +157,7 @@ Global
 		{9DD995F8-7E1E-4B48-AA76-6BA344097EF9} = {B9DDAC25-EA18-4A41-AF56-415FA7C3EC31}
 		{F308CF45-2CA2-45AC-8941-382DCA04C2BE} = {B9DDAC25-EA18-4A41-AF56-415FA7C3EC31}
 		{D711C1AC-BDC1-4F0D-894E-113BB6F65043} = {BEE011F2-AF1B-4BF1-BA9A-2E0C5FF9CAAC}
+		{DC0CEEE5-8502-4B00-AE60-F80ADA6B333F} = {320970DC-DF34-4518-AB41-5595566988D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C0E0639-6609-4397-9BBB-7E1CBEF22A44}
